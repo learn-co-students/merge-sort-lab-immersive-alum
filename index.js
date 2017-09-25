@@ -1,5 +1,15 @@
 function findMinAndRemoveSorted(array){
-    return array.shift()
+  // let small = array[0]
+  // let index = 0
+  // array.forEach((item, i)=> {
+  //   if(item < small){
+  //     small = item
+  //     index = i
+  //   }
+  // })
+  // array.splice(index, 1)
+  // return small
+  return array.shift()
 }
 
 function merge(first, second){
