@@ -13,12 +13,10 @@ function findMinAndRemoveSorted(array){
 
 function merge(first, second){
   let sorted = []
-  while(first.length > 0 || second.length > 0){
-    let f = first[0]
-    let s = second[0]
-    if(f < s && f !== undefined){
+  while(first.length > 0 && second.length > 0){
+    if(first[0] < second[0]){
       sorted.push(findMinAndRemoveSorted(first))
-    }else if(f > s && s !== undefined){
+    }else{
       sorted.push(findMinAndRemoveSorted(second))
     }
   }
@@ -29,7 +27,6 @@ function mergeSort(array){
   let midPoint = array.length / 2
   let first = array.slice(0, midPoint)
   let second = array.slice(midPoint, array.length)
-  debugger
     if(array.length !== 1){
       return merge(mergeSort(first), mergeSort(second))
     }else{
