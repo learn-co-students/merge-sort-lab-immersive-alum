@@ -1,38 +1,28 @@
 function findMinAndRemoveSorted(array){
-  // let small = array[0]
-  // let index = 0
-  // array.forEach((item, i)=> {
-  //   if(item < small){
-  //     small = item
-  //     index = i
-  //   }
-  // })
-  // array.splice(index, 1)
-  // return small
-  return array.shift()
+  let small = array[0]
+  let index = 0
+  array.forEach((item, i)=> {
+    if(item < small){
+      small = item
+      index = i
+    }
+  })
+  array.splice(index, 1)
+  return small
 }
 
 function merge(first, second){
   let sorted = []
-  while(first.length || second.length){
-     let f = first[0]
-     let s = second[0]
-     debugger
-     if(!!f && !!s){
-       if(f < s){
-         sorted.push(findMinAndRemoveSorted(first))
-       }else if(s < f){
-         sorted.push(findMinAndRemoveSorted(second))
-       }
-    }else{
-       if(!!s){
-         sorted.push(findMinAndRemoveSorted(second))
-       }else if(!!f){
-         sorted.push(findMinAndRemoveSorted(first))
-       }
-     }
+  while(first.length > 0 || second.length > 0){
+    let f = first[0]
+    let s = second[0]
+    if(f < s && f !== undefined){
+      sorted.push(findMinAndRemoveSorted(first))
+    }else if(f > s && s !== undefined){
+      sorted.push(findMinAndRemoveSorted(second))
+    }
   }
-  return sorted
+  return sorted.concat(first).concat(second)
 }
 
 function mergeSort(array){
